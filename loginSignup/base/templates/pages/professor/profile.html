@@ -1,0 +1,49 @@
+{% extends "pages/main.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow rounded-4 p-4">
+        <h2 class="mb-4 text-center">👤 Profile Information</h2>
+
+        <dl class="row">
+            <dt class="col-sm-3">Username:</dt>
+            <dd class="col-sm-9">{{ user.username }}</dd>
+
+            <dt class="col-sm-3">Email:</dt>
+            <dd class="col-sm-9">{{ user.email }}</dd>
+
+            <dt class="col-sm-3">First Name:</dt>
+            <dd class="col-sm-9">{{ user.first_name|default:"(Not Provided)" }}</dd>
+
+            <dt class="col-sm-3">Last Name:</dt>
+            <dd class="col-sm-9">{{ user.last_name|default:"(Not Provided)" }}</dd>
+
+            <dt class="col-sm-3">Program:</dt>
+            <dd class="col-sm-9">
+                {% if program_field == 1 %}
+                    Computer Science
+                {% elif program_field == 2 %}
+                    Engineering
+                {% elif program_field == 3 %}
+                    Business
+                {% else %}
+                    Unknown
+                {% endif %}
+            </dd>
+
+            <dt class="col-sm-3">Role:</dt>
+            <dd class="col-sm-9">
+                {% if access_field == 1 %}
+                    Professor
+                {% elif access_field == 2 %}
+                    Program Coordinator
+                {% elif access_field == 3 %}
+                    Admin
+                {% else %}
+                    Unknown
+                {% endif %}
+            </dd>
+        </dl>
+    </div>
+</div>
+{% endblock content %}

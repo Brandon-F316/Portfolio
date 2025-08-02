@@ -1,0 +1,103 @@
+{% extends "pages/main.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <!-- Main Heading -->
+    <h1 class="display-4 text-center mb-4">Assessment</h1>
+
+    <!-- Edit Performance Indicators Section -->
+    <h2 class="text-center mb-4">Edit Performance Indicators for "{{ uploaded_file.file.name }}"</h2>
+
+    <!-- Form to Edit Performance Indicators -->
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        
+        <!-- Render all 8 Performance Indicators -->
+        <div class="form-group">
+            <label for="{{ form.Course.id_for_label }}" class="h5">Course Name</label>
+            {{ form.Course|add_class:"form-control w-100" }}  <!-- Render Course Name -->
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.PI1.id_for_label }}" class="h5">Performance Indicator 1</label>
+            {{ form.PI1|add_class:"form-control w-100 custom-height" }}  <!-- Render PI1 -->
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.PI2.id_for_label }}" class="h5">Performance Indicator 2</label>
+            {{ form.PI2|add_class:"form-control w-100 custom-height" }}  <!-- Render PI2 -->
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.PI3.id_for_label }}" class="h5">Performance Indicator 3</label>
+            {{ form.PI3|add_class:"form-control w-100 custom-height" }}  <!-- Render PI3 -->
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.PI4.id_for_label }}" class="h5">Performance Indicator 4</label>
+            {{ form.PI4|add_class:"form-control w-100 custom-height" }}  <!-- Render PI4 -->
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.PI5.id_for_label }}" class="h5">Performance Indicator 5</label>
+            {{ form.PI5|add_class:"form-control w-100 " }}  <!-- Render PI5 -->
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.PI6.id_for_label }}" class="h5">Performance Indicator 6</label>
+            {{ form.PI6|add_class:"form-control w-100 " }}  <!-- Render PI6 -->
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.PI7.id_for_label }}" class="h5">Performance Indicator 7</label>
+            {{ form.PI7|add_class:"form-control w-100" }}  <!-- Render PI7 -->
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.PI8.id_for_label }}" class="h5">Performance Indicator 8</label>
+            {{ form.PI8|add_class:"form-control w-100 custom-height" }}  <!-- Render PI8 -->
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">Save Changes</button>
+    </form>
+
+    <!-- Navigation Links -->
+    <div class="text-center">
+        <a href="{% url 'base:AutoAssess' %}" class="btn btn-secondary btn-lg">Previous Step</a>
+    </div>
+</div>
+
+<!-- Custom CSS for styling form fields -->
+<style>
+    .form-control {
+        width: 100%; /* Ensure the fields are full width */
+        height: 100px;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+
+
+    /* Make the labels larger */
+    .form-group label {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Add padding to the container */
+    .container {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    /* Styling for the submit button */
+    .btn {
+        border-radius: 5px;  /* Rounded corners */
+    }
+</style>
+
+{% endblock content %}

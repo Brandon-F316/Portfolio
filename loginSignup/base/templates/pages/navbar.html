@@ -1,0 +1,50 @@
+{%load static%}
+
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #fff;
+    margin-right: 20px;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Website Assessment</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+          <li class="nav-item active">
+              <a class="nav-link" href="{% url 'base:home' %}">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="assessmentDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Assessment
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="assessmentDropdown">
+                <li><a class="dropdown-item" href="{% url 'base:AutoAssess' %}"> Automatic Assessment</a></li>
+                <li><a class="dropdown-item" href="{% url 'base:ManAssess' %}"> Manual Assessment</a></li>
+            </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'base:courses' %}">My Courses</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'base:ViewData' %}">Data</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'base:settings' %}">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'base:llmTest' %}">Test</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'base:profile' %}">Profile</a>
+        </li>
+      </ul>
+  </div>
+  <span class="hello-msg">Hello, {{ request.user }}</span>
+  <span><a href="{% url 'base:logout' %}">Logout</a></span>
+</nav>

@@ -1,0 +1,22 @@
+{% extends "pages/main.html" %}
+
+{% block content %}
+
+<h2>Upload Excel File</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="excel_file" accept=".xlsx,.xls">
+    <button type="submit">Upload</button>
+</form>
+
+{% load static %}
+
+<br>
+<p>
+Upload your grades in an excel file in this format. Ensure to title the columns correctly.
+</p>
+
+
+<img src="{% static 'images/excel_example.png' %}" alt="Example Image" width="600">
+
+{% endblock content %}

@@ -1,0 +1,193 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        form {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        form div {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+                .message {
+            color: red;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .login-link {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hide access code field initially */
+        #access_code_field {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Registration</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                {{ form.first_name.label_tag }}
+                {{ form.first_name }}
+            </div>
+            <div>
+                {{ form.last_name.label_tag }}
+                {{ form.last_name }}
+            </div>
+            <div>
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+
+            <div>
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+
+            <div>
+                {{ form.access_field.label_tag }}
+                {{ form.access_field }}
+            </div>
+
+
+            <div id="access_code_field">
+                {{ form.access_code.label_tag }}
+                {{ form.access_code }}
+            </div>
+
+            <div>
+                {{ form.program_field.label_tag }}
+                {{ form.program_field }}
+            </div>
+
+            <div>
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+            </div>
+
+            <div>
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+            </div>
+
+            {% for message in messages %}
+            <p class="message">{{ message }}</p>
+            {% endfor %}
+
+            <button type="submit">Register</button>
+        </form>
+
+        <!-- Already have an account link -->
+        <div class="login-link">
+            Already have an account? <a href="{% url 'base:home' %}">Go to Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let accessField = document.getElementById("id_access_field");
+            let accessCodeField = document.getElementById("access_code_field");
+
+            function toggleAccessCode() {
+                if (accessField.value === "2") {
+                    accessCodeField.style.display = "block";
+                }
+                else if (accessField.value === "3") {
+                accessCodeField.style.display = "block";
+                } else {
+                    accessCodeField.style.display = "none";
+                }
+            }
+
+            accessField.addEventListener("change", toggleAccessCode);
+            toggleAccessCode();
+        });
+    </script>
+
+</body>
+</html>
+
+{% endblock content %}

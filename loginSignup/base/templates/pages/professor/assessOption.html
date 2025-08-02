@@ -1,0 +1,29 @@
+{% extends "pages/main.html" %}
+{% block content %}
+
+<div class="container text-center mt-5">
+    <h1 class="display-4 mb-4">Welcome to WebAssess</h1>
+    <p class="lead mb-5">Choose one of the options below to continue:</p>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 mb-4">
+            <a href="{% url 'base:AutoAssess' %}" class="btn btn-lg btn-primary w-100">
+                Click here to Extract the Performance Indicators from your syllabus
+            </a>
+        </div>
+        <div class="col-12 col-md-6 mb-4">
+            <a href="{% url 'base:ManAssess' %}" class="btn btn-lg btn-secondary w-100">
+                Click here to Manually input your Performance Indicators
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .btn:hover {
+        opacity: 0.8; /* Adds slight transparency on hover */
+    }
+</style>
+
+{% endblock content %}

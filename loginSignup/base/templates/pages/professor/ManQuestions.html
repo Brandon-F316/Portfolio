@@ -1,0 +1,57 @@
+{% extends "pages/main.html" %}
+{% block content %}
+
+<h2>Enter Your Questions Here</h2>
+
+<form method="post">
+  {% csrf_token %}
+  
+  <div id="textBoxContainer">
+    <div class="input-group">
+      <input type="text" placeholder="Enter Questions">
+    </div>
+  </div>
+
+  <input type="hidden" name="combined_text" id="combined_text">
+
+  <button type="button" onclick="addTextBox()">Add Questions</button>
+  <button type="button" onclick="removeTextBox()">Remove Questions</button>
+  <button type="submit" onclick="combineText()">Save Outcomes</button>
+
+  <p><strong>Combined:</strong> <span id="result"></span></p>
+</form>
+
+<script>
+  function addTextBox() {
+    const container = document.getElementById("textBoxContainer");
+    const div = document.createElement("div");
+    div.className = "input-group";
+    div.innerHTML = `<input type="text" placeholder="Enter Questions">`;
+    container.appendChild(div);
+  }
+
+  function removeTextBox() {
+    const container = document.getElementById("textBoxContainer");
+    if (container.children.length > 1) {
+      container.removeChild(container.lastElementChild);
+    }
+  }
+
+  function combineText() {
+    const container = document.getElementById("textBoxContainer");
+    const inputs = container.getElementsByTagName("input");
+    const values = [];
+
+    for (let input of inputs) {
+      if (input.type === "text") {
+        values.push(input.value.trim());
+      }
+    }
+
+    const combined = values.join("\n//\n");
+    document.getElementById("result").textContent = combined;
+    document.getElementById("combined_text").value = combined;
+  }
+</script>
+
+{% endblock content %}
